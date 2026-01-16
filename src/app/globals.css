@@ -300,10 +300,13 @@ img {
 @media (max-width: 768px) {
   :root {
     --sidebar-width: 0px;
+    --mobile-nav-height: 56px;
+    --player-height: 64px;
   }
 
   .app-layout {
     grid-template-columns: 1fr;
+    grid-template-rows: 1fr var(--player-height);
   }
 
   .app-layout.with-lyrics {
@@ -312,6 +315,8 @@ img {
 
   .main-content {
     grid-column: 1;
+    padding: var(--spacing-md);
+    padding-bottom: calc(var(--player-height) + var(--mobile-nav-height) + var(--spacing-md));
   }
 
   .lyrics-panel {

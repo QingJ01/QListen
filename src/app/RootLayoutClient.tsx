@@ -5,7 +5,7 @@ import { ThemeProvider } from '@/context/ThemeContext';
 import { PlayerProvider } from '@/context/PlayerContext';
 import { LyricsProvider, useLyrics } from '@/context/LyricsContext';
 import { FavoritesProvider } from '@/context/FavoritesContext';
-import { Sidebar, PlayerBar, FullScreenPlayer } from '@/components/layout';
+import { Sidebar, PlayerBar, FullScreenPlayer, MobileNav } from '@/components/layout';
 import { ThemeToggle } from '@/components/common/ThemeToggle';
 import { Lyrics } from '@/components/business';
 
@@ -23,6 +23,7 @@ function AppContent({ children }: { children: React.ReactNode }) {
                 </aside>
             )}
             <PlayerBar />
+            <MobileNav />
             {showFullScreen && <FullScreenPlayer onClose={() => setShowFullScreen(false)} />}
         </div>
     );
