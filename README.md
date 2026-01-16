@@ -1,106 +1,153 @@
-# QListen (轻听音乐)
+<div align="center">
 
-![Logo](/public/logo.svg)
+<img src="/public/logo.svg" alt="QListen Logo" width="120" height="120">
 
-A minimalist, elegant online music player built with Next.js and TuneHub API.
-> 极简、优雅的在线音乐播放器，专注于纯粹的听歌体验。
+# 轻听音乐 (QListen)
 
-## ✨ Features
+**极简 · 优雅 · 沉浸式**
 
-- **Apple Design Philosophy**
-  - Immersive glassmorphism effects (毛玻璃)
-  - Fluid animations and transitions
-  - Pixel-perfect typography and layout
-  - Dark/Light mode support with system preference sync
+基于 Next.js 和 TuneHub API 构建的现代化在线音乐播放器
 
-- **Immersive Player**
-  - Cinematic full-screen experience
-  - Dynamic large-scale cover art
-  - Synchronized, animated lyrics (LRC support)
-  - Platform-agnostic playback (Netease, Kuwo, QQ, etc.)
+[在线体验](https://music.byebug.cn) · [反馈问题](https://github.com/QingJ01/QListen/issues) · [加入社群](#-加入社群)
 
-- **Powerful Library**
-  - **Discover**: Top lists and curated playlists
-  - **Favorites**: Local persistence for your loved tracks
-  - **Search**: Aggregated search across multiple platforms
-  - **Queue**: Efficient playlist management
-
-## 🛠 Tech Stack
-
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **Styling**: CSS Modules + Tailwind CSS
-- **Icons**: Lucide React
-- **API**: TuneHub API (Tunefree)
-- **State**: React Context + LocalStorage
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm or pnpm
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/QingJ01/QListen.git
-
-# Navigate to directory
-cd QListen
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## 🤝 Community
-
-- **Telegram**: [@QingJG](https://t.me/QingJG)
-- **QQ Group**: [Click to Join](https://qm.qq.com/cgi-bin/qm/qr?k=S7aiwtH0mCFgzKRiAph-caj4pzpC0QJU&jump_from=webapi)
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+</div>
 
 ---
-Designed & Built by **Antigravity** & **QingJ**.
-Based on [TuneHub API](https://api.tunefree.fun/).
 
+## ✨ 核心特性
 
+### 🎨 Apple 设计美学
+- 💎 **毛玻璃效果** - 沉浸式视觉体验，模糊背景与内容完美融合
+- 🌊 **流畅动画** - 丝滑的页面过渡与交互反馈
+- � **像素级精细** - 严格遵循 Apple 设计规范的排版与间距
+- 🌗 **智能主题** - 深色/浅色模式自动跟随系统设置
+
+### 🎵 沉浸式播放
+- 🎬 **影院级全屏** - 超大封面与歌词展示，专注音乐本身
+- 🖼️ **动态封面** - 封面尺寸可达 560px，视觉冲击力十足
+- 📝 **逐字歌词** - LRC 格式歌词实时滚动高亮，精准同步
+- 🌍 **多源支持** - 网易云音乐、酷我音乐、QQ 音乐等平台
+
+### 📚 强大功能
+- 🏆 **发现音乐** - 热门榜单、精选歌单一网打尽
+- ❤️ **本地收藏** - 喜爱的歌曲永久保存在本地
+- 🔍 **聚合搜索** - 全网搜索，秒速找到心仪歌曲
+- 📋 **播放队列** - 灵活的播放列表管理，支持多种播放模式
+
+---
+
+## 🛠️ 技术栈
+
+| 分类 | 技术 |
+|------|------|
+| **框架** | Next.js 15 (App Router) |
+| **语言** | TypeScript |
+| **样式** | CSS Modules + Tailwind CSS |
+| **图标** | Lucide React |
+| **API** | [TuneHub API](https://api.tunefree.fun/) |
+| **状态管理** | React Context + LocalStorage |
+
+---
+
+## 🚀 快速开始
+
+### 环境要求
+
+- Node.js 18.0 或更高版本
+- npm / pnpm / yarn
+
+### 本地运行
 
 ```bash
+# 1. 克隆项目
+git clone https://github.com/QingJ01/QListen.git
+
+# 2. 进入目录
+cd QListen
+
+# 3. 安装依赖
+npm install
+
+# 4. 启动开发服务器
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+打开浏览器访问 [http://localhost:3000](http://localhost:3000) 即可预览。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 生产构建
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# 构建生产版本
+npm run build
 
-## Learn More
+# 启动生产服务器
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📸 预览截图
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+<div align="center">
 
-## Deploy on Vercel
+### 主页
+<img width="800" alt="主页" src="https://github.com/user-attachments/assets/1bf15e36-fd1b-40bb-983a-bd5f31403b8e" />
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 最近播放
+<img width="800" alt="最近播放" src="https://github.com/user-attachments/assets/15e69ca4-f98b-4bc6-a0b6-5a4a59183db5" />
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 我喜欢
+<img width="800" alt="我喜欢" src="https://github.com/user-attachments/assets/db9d83db-954f-4e1f-81b6-a0bdb61c71f6" />
+
+### 搜索
+<img width="800" alt="搜索" src="https://github.com/user-attachments/assets/9454170e-9f9c-4864-86d7-17a2227d2800" />
+
+### 播放列表
+<img width="800" alt="播放列表" src="https://github.com/user-attachments/assets/341fca76-86fa-4fa7-9f9c-6920f6b00ef9" />
+
+### 全屏播放器
+<img width="800" alt="播放器" src="https://github.com/user-attachments/assets/0cded079-8b06-4f36-8716-97eb066f2557" />
+
+</div>
+
+---
+
+## 🤝 加入社群
+
+欢迎加入我们的社群，获取最新动态、反馈问题或参与讨论：
+
+- 📱 **Telegram 频道**: [@QingJG](https://t.me/QingJG)
+- 💬 **QQ 交流群**: [点击加入](https://qm.qq.com/cgi-bin/qm/qr?k=S7aiwtH0mCFgzKRiAph-caj4pzpC0QJU&jump_from=webapi)
+
+---
+
+## 📚 开发计划
+
+- [ ] 添加音频可视化效果
+- [ ] 支持自定义主题颜色
+- [ ] 移动端适配优化
+- [ ] PWA 支持
+
+---
+
+## 📄 开源协议
+
+本项目采用 [MIT](LICENSE) 协议开源。
+
+---
+
+## 💖 致谢
+
+- **设计与开发**: Antigravity & QingJ
+- **API 支持**: [TuneHub API](https://api.tunefree.fun/)
+- **灵感来源**: Apple Music
+
+---
+
+<div align="center">
+
+**如果这个项目对你有帮助，请给个 ⭐️ Star 支持一下！**
+
+Made with ❤️ by [QingJ](https://github.com/QingJ01)
+
+</div>
