@@ -35,9 +35,9 @@ export const metadata: Metadata = {
     images: ['https://music.byebug.cn/logo.svg'],
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: '/logo.svg',
+    shortcut: '/logo.svg',
+    apple: '/logo.svg',
   },
 };
 
