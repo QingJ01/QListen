@@ -1,0 +1,37 @@
+.toggle {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    z-index: 100;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(var(--color-bg-elevated), 0.5);
+    /* fallback */
+    background: var(--color-bg-elevated);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-card);
+}
+
+.toggle:hover {
+    color: var(--color-text-primary);
+    transform: scale(1.05);
+    background: var(--color-bg-tertiary);
+}
+
+.toggle:active {
+    transform: scale(0.95);
+}
+
+.iconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: var(--animate-scale-in);
+}

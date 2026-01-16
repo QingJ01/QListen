@@ -1,66 +1,102 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
 
-export default function Home() {
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Loader2 } from 'lucide-react';
+import { getTopLists, getCoverUrl } from '@/lib/api';
+import type { TopListItem, MusicPlatform } from '@/lib/types';
+import { MediaCard, MediaGrid } from '@/components/business';
+import styles from './page.module.css';
+
+const PLATFORMS: { id: MusicPlatform; name: string }[] = [
+  { id: 'netease', name: '网易云' },
+  { id: 'qq', name: 'QQ音乐' },
+  { id: 'kuwo', name: '酷我' },
+];
+
+export default function HomePage() {
+  const [platform, setPlatform] = useState<MusicPlatform>('netease');
+  const [topLists, setTopLists] = useState<TopListItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchTopLists() {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await getTopLists(platform);
+        setTopLists(data.list || []);
+      } catch (err) {
+        setError('加载排行榜失败，请稍后重试');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchTopLists();
+  }, [platform]);
+
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <header className={styles.header}>
+        <h1 className={styles.title}>现在就听</h1>
+        <p className={styles.subtitle}>热门排行榜与精选歌单</p>
+      </header>
+
+      {/* Platform Tabs */}
+      <div className={styles.platformTabs}>
+        {PLATFORMS.map((p) => (
+          <button
+            key={p.id}
+            className={`${styles.platformTab} ${platform === p.id ? styles.active : ''}`}
+            onClick={() => setPlatform(p.id)}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            {p.name}
+          </button>
+        ))}
+      </div>
+
+      {/* Top Lists Section */}
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>排行榜</h2>
         </div>
-      </main>
+
+        {loading ? (
+          <div className={styles.loading}>
+            <Loader2 size={32} className="animate-spin" />
+          </div>
+        ) : error ? (
+          <div className={styles.error}>
+            <p>{error}</p>
+            <button
+              className={styles.retryBtn}
+              onClick={() => setPlatform(platform)}
+            >
+              重试
+            </button>
+          </div>
+        ) : (
+          <MediaGrid>
+            {topLists.slice(0, 12).map((list) => (
+              <Link
+                key={list.id}
+                href={`/toplist/${platform}/${list.id}`}
+                style={{ textDecoration: 'none' }}
+              >
+                <MediaCard
+                  id={list.id}
+                  title={list.name}
+                  subtitle={list.updateFrequency}
+                  imageUrl={list.pic || getCoverUrl(list.id, platform)}
+                />
+              </Link>
+            ))}
+          </MediaGrid>
+        )}
+      </section>
     </div>
   );
 }

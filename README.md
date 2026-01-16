@@ -1,8 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QListen (轻听音乐)
 
-## Getting Started
+![Logo](/public/logo.svg)
 
-First, run the development server:
+A minimalist, elegant online music player built with Next.js and TuneHub API.
+> 极简、优雅的在线音乐播放器，专注于纯粹的听歌体验。
+
+## ✨ Features
+
+- **Apple Design Philosophy**
+  - Immersive glassmorphism effects (毛玻璃)
+  - Fluid animations and transitions
+  - Pixel-perfect typography and layout
+  - Dark/Light mode support with system preference sync
+
+- **Immersive Player**
+  - Cinematic full-screen experience
+  - Dynamic large-scale cover art
+  - Synchronized, animated lyrics (LRC support)
+  - Platform-agnostic playback (Netease, Kuwo, QQ, etc.)
+
+- **Powerful Library**
+  - **Discover**: Top lists and curated playlists
+  - **Favorites**: Local persistence for your loved tracks
+  - **Search**: Aggregated search across multiple platforms
+  - **Queue**: Efficient playlist management
+
+## 🛠 Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: CSS Modules + Tailwind CSS
+- **Icons**: Lucide React
+- **API**: TuneHub API (Tunefree)
+- **State**: React Context + LocalStorage
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or pnpm
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/QingJ01/QListen.git
+
+# Navigate to directory
+cd QListen
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 🤝 Community
+
+- **Telegram**: [@QingJG](https://t.me/QingJG)
+- **QQ Group**: [Click to Join](https://qm.qq.com/cgi-bin/qm/qr?k=S7aiwtH0mCFgzKRiAph-caj4pzpC0QJU&jump_from=webapi)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+Designed & Built by **Antigravity** & **QingJ**.
+Based on [TuneHub API](https://api.tunefree.fun/).
+
+
 
 ```bash
 npm run dev

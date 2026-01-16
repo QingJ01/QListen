@@ -1,0 +1,219 @@
+.container {
+    padding: var(--spacing-2xl);
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logoWrapper {
+    margin-bottom: var(--spacing-xl);
+    padding: 20px;
+    border-radius: 24px;
+    background: var(--color-bg-elevated);
+    box-shadow: var(--shadow-elevated);
+}
+
+.logoIcon {
+    width: 80px;
+    height: 80px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-primary);
+}
+
+.version {
+    font-size: var(--font-size-md);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-2xl);
+    padding: 4px 12px;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-full);
+}
+
+.description {
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin-bottom: var(--spacing-lg);
+}
+
+.apiInfo {
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+.statusGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.statusItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.statusLabel {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+}
+
+.statusValue {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.platformTags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.platformTag {
+    font-size: 10px;
+    padding: 2px 6px;
+    background: var(--color-bg-tertiary);
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.section {
+    width: 100%;
+    margin-bottom: var(--spacing-xl);
+    text-align: left;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+}
+
+.sectionTitle {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.stackList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--spacing-md);
+    list-style: none;
+}
+
+.stackItem {
+    padding: var(--spacing-md);
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    text-align: center;
+    transition: all var(--transition-fast);
+}
+
+.stackItem:hover {
+    background: var(--color-bg-elevated);
+    color: var(--color-text-primary);
+    transform: translateY(-2px);
+}
+
+.apiLink {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--color-text-secondary);
+    transition: all 0.2s;
+}
+
+.apiLink:hover {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+}
+
+.communityList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.communityItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.communityItem:hover {
+    background: var(--color-bg-elevated);
+    transform: translateY(-2px);
+}
+
+.communityInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.communityName {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.communityDesc {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+}
+
+.footer {
+    margin-top: var(--spacing-2xl);
+    color: var(--color-text-tertiary);
+    font-size: var(--font-size-sm);
+}
+
+.link {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.link:hover {
+    opacity: 0.8;
+}
