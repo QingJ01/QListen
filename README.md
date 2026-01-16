@@ -138,7 +138,7 @@ npm start
 
 ## 💖 致谢
 
-- **设计与开发**: Antigravity & QingJ
+- **设计与开发**: QingJ & Cluade & Gemini
 - **API 支持**: [TuneHub API](https://api.tunefree.fun/)
 - **灵感来源**: Apple Music
 
