@@ -2,7 +2,6 @@
 
 import { Play, Music, Volume2, Heart } from 'lucide-react';
 import type { Track, MusicPlatform } from '@/lib/types';
-import { getCoverUrl } from '@/lib/api';
 import { usePlayer } from '@/context/PlayerContext';
 import { useFavorites } from '@/context/FavoritesContext';
 import styles from './SongList.module.css';
@@ -109,19 +108,9 @@ export function SongList({
                                         loading="lazy"
                                     />
                                 ) : (
-                                    <img
-                                        src={getCoverUrl(song.id, song.platform)}
-                                        alt={song.name}
-                                        className={styles.coverImage}
-                                        loading="lazy"
-                                        onError={(e) => {
-                                            const target = e.target as HTMLImageElement;
-                                            target.style.display = 'none';
-                                            const placeholder = document.createElement('div');
-                                            placeholder.className = styles.coverPlaceholder;
-                                            target.parentElement?.appendChild(placeholder);
-                                        }}
-                                    />
+                                    <div className={styles.coverPlaceholder}>
+                                        <Music size={20} />
+                                    </div>
                                 )}
                             </div>
                         )}

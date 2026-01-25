@@ -2,7 +2,6 @@
 
 import { Play, Shuffle, ListMusic, Music } from 'lucide-react';
 import { usePlayer } from '@/context/PlayerContext';
-import { getCoverUrl } from '@/lib/api';
 import { SongList } from '@/components/business';
 import { shuffle } from '@/lib/utils';
 import type { Track } from '@/lib/types';
@@ -61,14 +60,9 @@ export default function QueuePage() {
                                 className={styles.coverImage}
                             />
                         ) : (
-                            <img
-                                src={getCoverUrl(currentTrack.id, currentTrack.platform)}
-                                alt={currentTrack.name}
-                                className={styles.coverImage}
-                                onError={(e) => {
-                                    (e.target as HTMLImageElement).style.display = 'none';
-                                }}
-                            />
+                            <div className={styles.coverPlaceholder}>
+                                <Music size={28} />
+                            </div>
                         )}
                     </div>
                     <div className={styles.trackInfo}>

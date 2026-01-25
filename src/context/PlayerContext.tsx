@@ -9,8 +9,8 @@ import {
     useEffect,
     type ReactNode,
 } from 'react';
-import type { Track, PlayerState, MusicPlatform, AudioQuality, PlayMode } from '@/lib/types';
-import { getSongUrl } from '@/lib/api';
+import type { Track, PlayerState, AudioQuality, PlayMode, SongInfo } from '@/lib/types';
+import { getSongInfo } from '@/lib/api';
 import { storage, shuffle } from '@/lib/utils';
 
 // =============================================================================
@@ -229,22 +229,51 @@ export function PlayerProvider({ children }: PlayerProviderProps) {
         const track = playlist[currentIndex];
         if (!track || !audioRef.current) return;
 
+        let cancelled = false;
+
         setCurrentTrack(track);
         setIsLoading(true);
         setCurrentTime(0);
         setDuration(0);
 
-        const url = getSongUrl(track.id, track.platform, audioQuality);
+        // Fetch full song info (includes URL, cover, lyrics)
+        getSongInfo(track.id, track.platform, audioQuality)
+            .then((info) => {
+                if (cancelled || !audioRef.current) return;
 
-        audioRef.current.crossOrigin = 'anonymous';
-        audioRef.current.src = url;
-        audioRef.current.load();
+                // Enrich current track with cover from parse response
+                const enrichedTrack = {
+                    ...track,
+                    cover: info.pic,
+                    album: info.album || track.album,
+                };
+                setCurrentTrack(enrichedTrack);
 
-        if (isPlaying) {
-            audioRef.current.play().catch(console.error);
-        }
+                audioRef.current.crossOrigin = 'anonymous';
+                audioRef.current.src = info.url;
+                audioRef.current.load();
+
+                if (isPlaying) {
+                    audioRef.current.play().catch(console.error);
+                }
+            })
+            .catch((error) => {
+                console.error('Failed to get song info:', error);
+                setIsLoading(false);
+                // Try next song on error
+                if (!cancelled) {
+                    const nextIndex = currentIndex + 1;
+                    if (nextIndex < playlist.length) {
+                        setCurrentIndex(nextIndex);
+                    }
+                }
+            });
 
         storage.set(STORAGE_KEYS.LAST_TRACK, track);
+
+        return () => {
+            cancelled = true;
+        };
     }, [currentIndex, playlist, audioQuality]);
 
     // Play/Pause control

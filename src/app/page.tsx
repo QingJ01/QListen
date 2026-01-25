@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
-import { getTopLists, getCoverUrl } from '@/lib/api';
+import { getTopLists } from '@/lib/api';
 import type { TopListItem, MusicPlatform } from '@/lib/types';
 import { MediaCard, MediaGrid } from '@/components/business';
 import styles from './page.module.css';
@@ -90,7 +90,7 @@ export default function HomePage() {
                   id={list.id}
                   title={list.name}
                   subtitle={list.updateFrequency}
-                  imageUrl={list.pic || getCoverUrl(list.id, platform)}
+                  imageUrl={list.pic || ''}
                 />
               </Link>
             ))}

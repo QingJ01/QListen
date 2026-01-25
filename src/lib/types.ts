@@ -127,3 +127,50 @@ export interface SystemStatus {
 export interface HealthCheck {
     status: 'healthy' | 'unhealthy';
 }
+
+// =============================================================================
+// TuneHub API Types
+// =============================================================================
+
+export interface MethodConfig {
+    type: string;
+    method: 'GET' | 'POST';
+    url: string;
+    params?: Record<string, string>;
+    body?: Record<string, unknown>;
+    headers?: Record<string, string>;
+    transform?: string;
+}
+
+export interface ParsedSongInfo {
+    name: string;
+    artist: string;
+    album?: string;
+    duration?: number;
+}
+
+export interface ParsedSongData {
+    id: string;
+    success: boolean;
+    url: string;
+    info?: ParsedSongInfo;
+    cover?: string;
+    lyrics?: string;
+    requestedQuality?: string;
+    actualQuality?: string;
+    qualityMatch?: boolean;
+    wasDowngraded?: boolean;
+    fileSize?: number;
+    responseTime?: number;
+    expire?: number;
+    fromCache?: boolean;
+}
+
+export interface ParseResponse {
+    data: ParsedSongData[];
+    total: number;
+    success_count: number;
+    fail_count: number;
+    cache_hit_count?: number;
+    cost?: number;
+}

@@ -36,6 +36,7 @@ export function FullScreenPlayer({ onClose }: FullScreenPlayerProps) {
     const [lyricLoading, setLyricLoading] = useState(false);
     const [isScrubbing, setIsScrubbing] = useState(false);
     const [scrubTime, setScrubTime] = useState(0);
+    const [coverUrl, setCoverUrl] = useState<string>('');
 
     const activeLineRef = useRef<HTMLDivElement>(null);
     const lyricsContainerRef = useRef<HTMLDivElement>(null);
@@ -46,6 +47,23 @@ export function FullScreenPlayer({ onClose }: FullScreenPlayerProps) {
             setScrubTime(currentTime);
         }
     }, [currentTime, isScrubbing]);
+
+    // Fetch cover URL
+    useEffect(() => {
+        if (!currentTrack) {
+            setCoverUrl('');
+            return;
+        }
+
+        if (currentTrack.cover) {
+            setCoverUrl(currentTrack.cover);
+            return;
+        }
+
+        getCoverUrl(currentTrack.id, currentTrack.platform)
+            .then(url => setCoverUrl(url))
+            .catch(() => setCoverUrl(''));
+    }, [currentTrack]);
 
     // Fetch lyrics
     useEffect(() => {
@@ -85,11 +103,6 @@ export function FullScreenPlayer({ onClose }: FullScreenPlayerProps) {
         }
     }, [activeLineIndex]);
 
-    // Format helpers
-    const coverUrl = currentTrack
-        ? (currentTrack.cover || getCoverUrl(currentTrack.id, currentTrack.platform))
-        : '';
-
     const progressPercent = duration > 0 ? ((isScrubbing ? scrubTime : currentTime) / duration) * 100 : 0;
 
     if (!currentTrack) return null;
@@ -98,7 +111,7 @@ export function FullScreenPlayer({ onClose }: FullScreenPlayerProps) {
         <div className={styles.container}>
             {/* Background Blur */}
             <div className={styles.background}>
-                <img src={coverUrl} alt="" className={styles.blurImage} />
+                {coverUrl && <img src={coverUrl} alt="" className={styles.blurImage} />}
             </div>
 
             {/* Header */}
@@ -113,11 +126,15 @@ export function FullScreenPlayer({ onClose }: FullScreenPlayerProps) {
                 {/* Left: Cover & Info */}
                 <div className={styles.leftColumn}>
                     <div className={styles.coverWrapper}>
-                        <img
-                            src={coverUrl}
-                            alt={currentTrack.name}
-                            className={styles.coverImage}
-                        />
+                        {coverUrl ? (
+                            <img
+                                src={coverUrl}
+                                alt={currentTrack.name}
+                                className={styles.coverImage}
+                            />
+                        ) : (
+                            <div className={styles.coverPlaceholder} />
+                        )}
                     </div>
                     <div className={styles.trackInfo}>
                         <div className={styles.songTitle}>{currentTrack.name}</div>

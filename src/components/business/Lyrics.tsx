@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { X, Music, Loader2 } from 'lucide-react';
 import { usePlayer } from '@/context/PlayerContext';
-import { getLyrics, getCoverUrl } from '@/lib/api';
+import { getLyrics } from '@/lib/api';
 import { parseLrc, type LyricLine } from '@/lib/utils';
 import styles from './Lyrics.module.css';
 
@@ -83,14 +83,17 @@ export function Lyrics({ onClose, isModal = false }: LyricsProps) {
                     {currentTrack && (
                         <>
                             <div className={styles.cover}>
-                                <img
-                                    src={getCoverUrl(currentTrack.id, currentTrack.platform)}
-                                    alt={currentTrack.name}
-                                    className={styles.coverImage}
-                                    onError={(e) => {
-                                        (e.target as HTMLImageElement).style.display = 'none';
-                                    }}
-                                />
+                                {currentTrack.cover ? (
+                                    <img
+                                        src={currentTrack.cover}
+                                        alt={currentTrack.name}
+                                        className={styles.coverImage}
+                                    />
+                                ) : (
+                                    <div className={styles.coverPlaceholder}>
+                                        <Music size={24} />
+                                    </div>
+                                )}
                             </div>
                             <div className={styles.meta}>
                                 <div className={styles.title}>{currentTrack.name}</div>

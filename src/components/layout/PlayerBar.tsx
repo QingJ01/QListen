@@ -20,7 +20,7 @@ import {
 import { usePlayer } from '@/context/PlayerContext';
 import { useLyrics } from '@/context/LyricsContext';
 import { formatTime } from '@/lib/utils';
-import { getCoverUrl, getSongUrl } from '@/lib/api';
+import { getSongUrl } from '@/lib/api';
 import type { AudioQuality } from '@/lib/types';
 import styles from './PlayerBar.module.css';
 
@@ -89,16 +89,20 @@ export function PlayerBar() {
     }, [volume, prevVolume, setVolume]);
 
     // Download current track
-    const handleDownload = useCallback(() => {
+    const handleDownload = useCallback(async () => {
         if (!currentTrack) return;
-        const url = getSongUrl(currentTrack.id, currentTrack.platform, audioQuality);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `${currentTrack.name} - ${currentTrack.artist}.mp3`;
-        link.target = '_blank';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        try {
+            const url = await getSongUrl(currentTrack.id, currentTrack.platform, audioQuality);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${currentTrack.name} - ${currentTrack.artist}.mp3`;
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } catch (error) {
+            console.error('Download failed:', error);
+        }
     }, [currentTrack, audioQuality]);
 
     // Quality change handler
@@ -131,14 +135,9 @@ export function PlayerBar() {
                                     className={styles.coverImage}
                                 />
                             ) : (
-                                <img
-                                    src={getCoverUrl(currentTrack.id, currentTrack.platform)}
-                                    alt={currentTrack.name}
-                                    className={styles.coverImage}
-                                    onError={(e) => {
-                                        (e.target as HTMLImageElement).style.display = 'none';
-                                    }}
-                                />
+                                <div className={styles.coverPlaceholder}>
+                                    <Music size={24} strokeWidth={1.5} />
+                                </div>
                             )}
                         </div>
                         <div className={styles.meta}>
