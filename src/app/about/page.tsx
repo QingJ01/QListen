@@ -1,18 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './page.module.css';
-import { Code2, Heart, Github, Activity, Users, Send, MessageCircle } from 'lucide-react';
-import { getSystemStatus } from '@/lib/api';
-import type { SystemStatus } from '@/lib/types';
+import { Code2, Heart, Github, Users, Send, MessageCircle, Coffee } from 'lucide-react';
 
 export default function AboutPage() {
-    const [status, setStatus] = useState<SystemStatus | null>(null);
-
-    useEffect(() => {
-        getSystemStatus().then(setStatus).catch(console.error);
-    }, []);
-
     return (
         <div className={styles.container}>
             <div className={styles.logoWrapper}>
@@ -22,20 +14,6 @@ export default function AboutPage() {
             <h1 className={styles.title}>轻听音乐</h1>
             <div className={styles.version}>
                 Version 1.0.0
-                {status && (
-                    <span className={styles.apiInfo}>
-                        {' • Based on '}
-                        <a
-                            href="https://api.tunefree.fun/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.apiLink}
-                        >
-                            TuneHub API
-                        </a>
-                        {' v' + status.version}
-                    </span>
-                )}
             </div>
 
             <p className={styles.description}>
@@ -44,35 +22,25 @@ export default function AboutPage() {
                 专注于纯粹的听歌体验，为您带来身临其境的视听享受。
             </p>
 
-            {status && (
-                <div className={styles.section}>
-                    <h2 className={styles.sectionTitle}>
-                        <Activity size={24} />
-                        服务状态
-                    </h2>
-                    <div className={styles.statusGrid}>
-                        <div className={styles.statusItem}>
-                            <div className={styles.statusLabel}>运行状态</div>
-                            <div className={styles.statusValue}>
-                                <span className={styles.statusDot} style={{ background: '#10b981' }} />
-                                {status.status}
-                            </div>
-                        </div>
-                        <div className={styles.statusItem}>
-                            <div className={styles.statusLabel}>已运行</div>
-                            <div className={styles.statusValue}>{Math.floor(status.uptime / 3600)} 小时</div>
-                        </div>
-                        <div className={styles.statusItem}>
-                            <div className={styles.statusLabel}>支持平台</div>
-                            <div className={styles.platformTags}>
-                                {status.platforms.filter((p: any) => p.enabled).map((p: any) => (
-                                    <span key={p.name} className={styles.platformTag}>{p.name}</span>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+            <div className={styles.quotaNotice}>
+                <p>⚠️ 本站每日提供 <strong>1000 首</strong> 解析额度（全站）</p>
+                <p>如有更高需求请自行部署项目配置 API</p>
+            </div>
+
+            <div className={styles.section}>
+                <h2 className={styles.sectionTitle}>
+                    <Coffee size={24} />
+                    赞助支持
+                </h2>
+                <p className={styles.sponsorText}>如果觉得本项目对您有帮助，欢迎赞助支持（每一元赞助每日多10首歌播放额度） ❤️</p>
+                <div className={styles.qrcodeWrapper}>
+                    <img
+                        src="https://esaimg.cdn1.vip/i/697eef29c5ab8_1769926441.png"
+                        alt="赞助二维码"
+                        className={styles.qrcode}
+                    />
                 </div>
-            )}
+            </div>
 
             <div className={styles.section}>
                 <h2 className={styles.sectionTitle}>

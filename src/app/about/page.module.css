@@ -58,56 +58,9 @@
     margin-bottom: var(--spacing-lg);
 }
 
-.apiInfo {
-    opacity: 0.8;
-    font-weight: 400;
-}
 
-.statusGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: var(--spacing-lg);
-}
 
-.statusItem {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
 
-.statusLabel {
-    font-size: var(--font-size-xs);
-    color: var(--color-text-tertiary);
-}
-
-.statusValue {
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    color: var(--color-text-primary);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.statusDot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-}
-
-.platformTags {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-}
-
-.platformTag {
-    font-size: 10px;
-    padding: 2px 6px;
-    background: var(--color-bg-tertiary);
-    border-radius: 4px;
-    text-transform: uppercase;
-}
 
 .section {
     width: 100%;
@@ -151,16 +104,34 @@
     transform: translateY(-2px);
 }
 
-.apiLink {
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    border-bottom: 1px dotted var(--color-text-secondary);
-    transition: all 0.2s;
+.quotaNotice {
+    background: rgba(255, 171, 0, 0.1);
+    color: #ffab00;
+    padding: 12px 20px;
+    border-radius: 12px;
+    margin-bottom: var(--spacing-xl);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    border: 1px solid rgba(255, 171, 0, 0.2);
 }
 
-.apiLink:hover {
-    color: var(--color-accent);
-    border-bottom-color: var(--color-accent);
+.sponsorText {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.qrcodeWrapper {
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.qrcode {
+    width: 200px;
+    height: 200px;
+    display: block;
 }
 
 .communityList {

@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     } catch (error) {
         console.error('Parse API error:', error);
         return NextResponse.json(
-            { code: -1, message: 'Internal server error' },
+            { code: -1, message: 'API额度不足，请稍后再试' },
             { status: 500 }
         );
     }

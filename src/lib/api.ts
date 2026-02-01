@@ -183,7 +183,7 @@ export async function parseSongs(
     });
 
     if (!response.ok) {
-        throw new Error(`Parse failed: ${response.status}`);
+        throw new Error('API额度不足，请稍后再试');
     }
 
     const result = await response.json();
@@ -208,7 +208,7 @@ export async function getSongInfo(
     const songData = parsed.data?.[0];
 
     if (!songData || !songData.success) {
-        throw new Error('Song not found');
+        throw new Error('API额度不足，请稍后再试');
     }
 
     return {
