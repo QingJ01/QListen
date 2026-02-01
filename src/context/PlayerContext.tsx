@@ -37,6 +37,9 @@ interface PlayerContextValue extends PlayerState {
     playMode: PlayMode;
     setPlayMode: (mode: PlayMode) => void;
     cyclePlayMode: () => void;
+    // Quota management
+    isQuotaExhausted: boolean;
+    closeQuotaModal: () => void;
 }
 
 const PlayerContext = createContext<PlayerContextValue | null>(null);
@@ -74,8 +77,13 @@ export function PlayerProvider({ children }: PlayerProviderProps) {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
-    const [audioQuality, setAudioQualityState] = useState<AudioQuality>('320k');
+    // State
+    const [isQuotaExhausted, setIsQuotaExhausted] = useState(false);
     const [playMode, setPlayModeState] = useState<PlayMode>('sequential');
+    const [audioQuality, setAudioQualityState] = useState<AudioQuality>('320k');
+
+
+    const closeQuotaModal = useCallback(() => setIsQuotaExhausted(false), []);
 
     // Initialize audio element and restore settings
     useEffect(() => {
@@ -257,10 +265,18 @@ export function PlayerProvider({ children }: PlayerProviderProps) {
                     audioRef.current.play().catch(console.error);
                 }
             })
-            .catch((error) => {
+
+            .catch((error: Error) => {
                 console.error('Failed to get song info:', error);
                 setIsLoading(false);
-                // Try next song on error
+
+                // Check for API quota error
+                if (error.message.includes('API额度不足')) {
+                    setIsQuotaExhausted(true);
+                    return; // Stop here, do not skip to next song
+                }
+
+                // Try next song on other errors
                 if (!cancelled) {
                     const nextIndex = currentIndex + 1;
                     if (nextIndex < playlist.length) {
@@ -426,6 +442,8 @@ export function PlayerProvider({ children }: PlayerProviderProps) {
         setAudioQuality,
         setPlayMode,
         cyclePlayMode,
+        isQuotaExhausted,
+        closeQuotaModal,
     };
 
     return (
