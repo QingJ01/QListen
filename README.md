@@ -44,7 +44,7 @@
 | **语言** | TypeScript |
 | **样式** | CSS Modules + Tailwind CSS |
 | **图标** | Lucide React |
-| **API** | [TuneHub API](https://api.tunefree.fun/) |
+| **API** | [TuneHub API](https://tunehub.sayqz.com/) |
 | **状态管理** | React Context + LocalStorage |
 
 ---
@@ -68,7 +68,12 @@ cd QListen
 # 3. 安装依赖
 npm install
 
-# 4. 启动开发服务器
+# 4. 配置环境变量
+# 复制示例文件并填入 TUNEHUB_API_KEY (必需)
+# Mac/Linux: cp .env.example .env.local
+# Windows: copy .env.example .env.local
+
+# 5. 启动开发服务器
 npm run dev
 ```
 
@@ -139,7 +144,7 @@ npm start
 ## 💖 致谢
 
 - **设计与开发**: QingJ & Cluade & Gemini
-- **API 支持**: [TuneHub API](https://api.tunefree.fun/)
+- **API 支持**: [TuneHub API](https://tunehub.sayqz.com/)
 - **灵感来源**: Apple Music
 
 ---
