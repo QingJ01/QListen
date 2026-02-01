@@ -13,7 +13,7 @@ export default function AboutPage() {
 
             <h1 className={styles.title}>轻听音乐</h1>
             <div className={styles.version}>
-                Version 1.0.0
+                Version 1.0.1
             </div>
 
             <p className={styles.description}>

@@ -189,7 +189,9 @@
     }
 
     .songItem {
-        grid-template-columns: 40px 1fr 40px;
+        grid-template-columns: 40px 1fr 40px !important;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm) 0;
     }
 
     .albumCell,
